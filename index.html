@@ -46,7 +46,72 @@
 
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
+    <h1>Explicación del Modelo de Red Neuronal</h1>
 
-            
+    <h2>Descripción General</h2>
+    <p>Este código implementa un modelo de red neuronal en TensorFlow para convertir temperaturas de grados Celsius a grados Fahrenheit.</p>
+
+    <h2>1. Importar las Librerías Necesarias</h2>
+    <pre><code>import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+    </code></pre>
+    <p>Se utilizan las siguientes librerías:</p>
+    <ul>
+        <li><strong>tensorflow</strong>: Para construir y entrenar la red neuronal.</li>
+        <li><strong>numpy</strong>: Para manejar arrays de datos numéricos.</li>
+        <li><strong>matplotlib.pyplot</strong>: Para graficar el error durante el entrenamiento.</li>
+    </ul>
+
+    <h2>2. Definir los Datos de Entrenamiento</h2>
+    <pre><code>celsius = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float)
+fahrenheit = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float)
+    </code></pre>
+    <p>Se define un conjunto de datos que contiene los valores de temperatura en grados Celsius y su conversión correspondiente a Fahrenheit.</p>
+
+    <h2>3. Definir el Modelo de Red Neuronal</h2>
+    <pre><code>oculta1 = tf.keras.layers.Dense(units=3, input_shape=[1])
+oculta2 = tf.keras.layers.Dense(units=3)
+salida = tf.keras.layers.Dense(units=1)
+modelo = tf.keras.Sequential([oculta1, oculta2, salida])
+    </code></pre>
+    <p>El modelo consta de tres capas:</p>
+    <ul>
+        <li>Primera capa oculta con 3 neuronas.</li>
+        <li>Segunda capa oculta con 3 neuronas.</li>
+        <li>Capa de salida con 1 neurona.</li>
+    </ul>
+
+    <h2>4. Compilar el Modelo</h2>
+    <pre><code>modelo.compile(optimizer=tf.keras.optimizers.Adam(0.1), loss='mean_squared_error')
+    </code></pre>
+    <p>Se utiliza el optimizador Adam con una tasa de aprendizaje de 0.1 y la función de pérdida es el error cuadrático medio (MSE).</p>
+
+    <h2>5. Entrenar el Modelo</h2>
+    <pre><code>historial = modelo.fit(celsius, fahrenheit, epochs=1000, verbose=False)
+    </code></pre>
+    <p>El modelo se entrena durante 1000 épocas utilizando los datos de Celsius y Fahrenheit.</p>
+
+    <h2>6. Graficar la Pérdida Durante el Entrenamiento</h2>
+    <pre><code>plt.plot(historial.history["loss"])
+plt.show()
+    </code></pre>
+    <p>Se muestra una gráfica que representa la pérdida del modelo durante el entrenamiento.</p>
+
+    <h2>7. Realizar una Predicción</h2>
+    <pre><code>resultado = modelo.predict([100.0])
+    </code></pre>
+    <p>El modelo predice la conversión de 100 grados Celsius a Fahrenheit.</p>
+
+    <h2>8. Mostrar las Variables Internas del Modelo</h2>
+    <pre><code>print(oculta1.get_weights())
+print(oculta2.get_weights())
+print(salida.get_weights())
+    </code></pre>
+    <p>Se imprimen los pesos y sesgos aprendidos por el modelo durante el entrenamiento.</p>
+
+    <h2>Resumen</h2>
+    <p>El código construye y entrena un modelo de red neuronal para convertir temperaturas de Celsius a Fahrenheit. Aunque este es un problema simple, el ejemplo sirve para demostrar cómo las redes neuronales pueden aprender relaciones complejas entre datos a través del entrenamiento supervisado.</p>
+
 </body>
 </html>
