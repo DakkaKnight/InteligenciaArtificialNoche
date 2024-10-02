@@ -3,50 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Comparación DFS vs BFS</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .images {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .images img {
+            margin: 0 10px;
+            width: 150px; /* Ajusta el tamaño según sea necesario */
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <h1>Clase 15/08/2024</h1>
-    <h2>Webinar Tecnologías para la Transformación Digital "Capítulo Ciberseguridad e Inteligencia Artificial</h2>
+    <h2>Webinar Tecnologías para la Transformación Digital "Capítulo Ciberseguridad e Inteligencia Artificial"</h2>
 
     <h3>Inteligencia Artificial y Seguridad informática</h3>
-    <div>La inteligencia artificial no solo se puede usar para hacer consultas, resolver problemas personales, etc. Tambien es posible usarlas para hacer más seguras las aplicaciones y servicios que puede ofrecer una empresa o una persona, así su seguridad puede volverse más robusta y dificil de burlar. Sin embargo, también puede usarse para el proposito opuesto, por lo que hay muchos ciberdelincuentes que las usan para hackear o automatizar procesos que sirven para burlar la seguridad de alguna aplicación y así poder cometer sus actos fraudulentos. Para combatir esto, podría hacerse uso de una inteligencia artificial que pueda encontrar las rupturas y solucionarlas eficazmente en un tiempo más reducido.
+    <div>La inteligencia artificial no solo se puede usar para hacer consultas, resolver problemas personales, etc. Tambien es posible usarlas para hacer más seguras las aplicaciones y servicios que puede ofrecer una empresa o una persona, así su seguridad puede volverse más robusta y difícil de burlar. Sin embargo, también puede usarse para el propósito opuesto, por lo que hay muchos ciberdelincuentes que las usan para hackear o automatizar procesos que sirven para burlar la seguridad de alguna aplicación y así poder cometer sus actos fraudulentos. Para combatir esto, podría hacerse uso de una inteligencia artificial que pueda encontrar las rupturas y solucionarlas eficazmente en un tiempo más reducido.
     </div>
 
     <h3>Lulo Banco</h3>
-    <div>Lulo es un banco digital, el cual hace uso de inteligencia artifical para resolver multiples tareas relacionadas con los requerimientos del banco, como transacciones, ayudas, busquedas, bots, etc. Adicional a esto, Lulo también tiene una gran seguridad y aprovecha al máximo su inteligencia artificial para enriquecer y ayudar con la seguridad tanto de la aplicación, como del banco y sus usuarios.
+    <div>Lulo es un banco digital, el cual hace uso de inteligencia artificial para resolver múltiples tareas relacionadas con los requerimientos del banco, como transacciones, ayudas, búsquedas, bots, etc. Adicional a esto, Lulo también tiene una gran seguridad y aprovecha al máximo su inteligencia artificial para enriquecer y ayudar con la seguridad tanto de la aplicación, como del banco y sus usuarios.
     </div>
 
-    
     <h3>Inteligencia Artificial</h3>
-    <div>Nos centramos en la creación de sistemas capaces de realizar tareas especificas que en el entorno humano necesitarían de la inteligencia humana para poder ser realizadas. Las operaciones que se realizan por esta inteligencia pueden variar o incluso mezcarse para resolver la tarea especificada. Adicional a esto, las inteligencias artificiales pueden tener la capacidad de aprender constantemente de la información que se le provee ya sea por usuarios o por administradores, quienes le darían una base de información previa desde la cual se basa para realizar las operaciones y tareas.</div>
-
+    <div>Nos centramos en la creación de sistemas capaces de realizar tareas específicas que en el entorno humano necesitarían de la inteligencia humana para poder ser realizadas. Las operaciones que se realizan por esta inteligencia pueden variar o incluso mezclarse para resolver la tarea especificada. Adicional a esto, las inteligencias artificiales pueden tener la capacidad de aprender constantemente de la información que se le provee ya sea por usuarios o por administradores, quienes le darían una base de información previa desde la cual se basa para realizar las operaciones y tareas.</div>
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-    
     <h1>Clase 22/08/2024</h1>
-    <h2>Inteligencia Artificial y Algoritmos de busqueda</h2>
+    <h2>Inteligencia Artificial y Algoritmos de búsqueda</h2>
 
-    <h3>¿Que es inteligencia artificial?</h3>
-    <div>La inteligencia artificial se compone de patrones, algoritmos, operaciones y una gran cantidad de información previamente cargada en una base de datos sobre la cual opera esta inteligencia. Actualmente para que esta inteligencia funcione correctamente debe usar estos patrones y algoritmos para dar respuestas a consultas especificas que son dadas por un usuario ajeno a la operacion tecnica de la misma.
+    <h3>¿Qué es inteligencia artificial?</h3>
+    <div>La inteligencia artificial se compone de patrones, algoritmos, operaciones y una gran cantidad de información previamente cargada en una base de datos sobre la cual opera esta inteligencia. Actualmente para que esta inteligencia funcione correctamente debe usar estos patrones y algoritmos para dar respuestas a consultas específicas que son dadas por un usuario ajeno a la operación técnica de la misma.
     </div>
 
-    <h3>Algoritmos de busqueda</h3>
-    <div>Estos son una serie de pasos que se deben seguir siguiendo unos patrones especificos para poder encontrar las respuestas o los resultados mas optimos según la consulta propuesta.
+    <h3>Algoritmos de búsqueda</h3>
+    <div>Estos son una serie de pasos que se deben seguir siguiendo unos patrones específicos para poder encontrar las respuestas o los resultados más óptimos según la consulta propuesta.
     </div>
 
-    <h3>¿Como pueden Funcionar?</h3>
-    <div>Para este caso vamos a abordar los algoritmos de busqueda que funcionan siguiendo la teoria de colas, la cual nos sugiere un mecanismo que emplea un modelo que nos sirve para identificar qué "miembro" dentro de una secuencia o lista es el que debe recibir la atención más próxima.
+    <h3>¿Cómo pueden Funcionar?</h3>
+    <div>Para este caso vamos a abordar los algoritmos de búsqueda que funcionan siguiendo la teoría de colas, la cual nos sugiere un mecanismo que emplea un modelo que nos sirve para identificar qué "miembro" dentro de una secuencia o lista es el que debe recibir la atención más próxima.
     </div>
     <h4>- LIFO - Last In, First Out</h4>
     <div>Para este caso, la última operación que entra en vigencia es la que se atiende y sale primero del estado.</div>
     <h4>- FIFO - First In, First Out</h4>
     <div>Aquí es la primera operación que entró en la cola la que se atiende y sale primero de la lista de atención.</div>
 
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
+    <h1>Explicación del Modelo de Red Neuronal</h1>
 
-            
+    <h2>Descripción General</h2>
+    <p>Este código implementa un modelo de red neuronal en TensorFlow para convertir temperaturas de grados Celsius a grados Fahrenheit.</p>
+
+    <h2>1. Importar las Librerías Necesarias</h2>
+    <pre><code>import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+    </code></pre>
+    <p>Se utilizan las siguientes librerías:</p>
+    <ul>
+        <li><strong>tensorflow</strong>: Para construir y entrenar la red neuronal.</li>
+        <li><strong>numpy</strong>: Para manejar arrays de datos numéricos.</li>
+        <li><strong>matplotlib.pyplot</strong>: Para graficar el error durante el entrenamiento.</li>
+    </ul>
+
+    <h2>2. Definir los Datos de Entrenamiento</h2>
+    <pre><code>celsius = np.array([-40, -10, 0, 8, 15, 22, 38], dtype=float)
+fahrenheit = np.array([-40, 14, 32, 46, 59, 72, 100], dtype=float)
+    </code></pre>
+    <p>Se define un conjunto de datos que contiene los valores de temperatura en grados Celsius y su conversión correspondiente a Fahrenheit.</p>
+
+    <h2>3. Definir el Modelo de Red Neuronal</h2>
+    <pre><code>oculta1 = tf.keras.layers.Dense(units=3, input_shape=[1])
+oculta2 = tf.keras.layers.Dense(units=3)
+salida = tf.keras.layers.Dense(units=1)
+modelo = tf.keras.Sequential([oculta1, oculta2, salida])
+    </code></pre>
+    <p>El modelo consta de tres capas:</p>
+    <ul>
+        <li>Primera capa oculta con 3 neuronas.</li>
+        <li>Segunda capa oculta con 3 neuronas.</li>
+        <li>Capa de salida con 1 neurona.</li>
+    </ul>
+
+    <h2>4. Compilar el Modelo</h2>
+    <pre><code>modelo.compile(optimizer=tf.keras.optimizers.Adam(0.1), loss='mean_squared_error')
+    </code></pre>
+    <p>Se utiliza el optimizador Adam con una tasa de aprendizaje de 0.1 y la función de pérdida es el error cuadrático medio (MSE).</p>
+
+    <h2>5. Entrenar el Modelo</h2>
+    <pre><code>historial = modelo.fit(celsius, fahrenheit, epochs=1000, verbose=False)
+    </code></pre>
+    <p>El modelo se entrena durante 1000 épocas utilizando los datos de Celsius y Fahrenheit.</p>
+
+    <h2>6. Graficar la Pérdida Durante el Entrenamiento</h2>
+    <pre><code>plt.plot(historial.history["loss"])
+plt.show()
+    </code></pre>
+    <p>Se muestra una gráfica que representa la pérdida del modelo durante el entrenamiento.</p>
+
+    <h2>7. Realizar una Predicción</h2>
+    <pre><code>resultado = modelo.predict([100.0])
+    </code></pre>
+    <p>El modelo predice la conversión de 100 grados Celsius a Fahrenheit.</p>
+
+    <h2>8. Mostrar las Variables Internas del Modelo</h2>
+    <pre><code>print(oculta1.get_weights())
+print(oculta2.get_weights())
+print(salida.get_weights())
+    </code></pre>
+    <p>Se imprimen los pesos y sesgos aprendidos por el modelo durante el entrenamiento.</p>
+
+    <h2>Resumen</h2>
+    <p>El código construye y entrena un modelo de red neuronal para convertir temperaturas de Celsius a Fahrenheit. Aunque este es un problema simple, el ejemplo sirve para demostrar cómo las redes neuronales pueden aprender relaciones complejas entre datos a través del entrenamiento supervisado.</p>
+
+    <!-- Tabla comparativa y imágenes -->
+    <h2 style="text-align: center;">Punto 3: Tabla Comparativa</h2>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>DFS</th>
+            <th>BFS</th>
+        </tr>
+        <tr>
+            <td>Maze1</td>
+            <td>298</td>
+            <td>181</td>
+        </tr>
+        <tr>
+            <td>Maze2</td>
+            <td>1197</td>
+            <td>1278</td>
+        </tr>
+    </table>
+
+    <div class="images">
+        <img src="imagen1.png" alt="Descripción de la imagen 1">
+        <img src="imagen2.png" alt="Descripción de la imagen 2">
+        <img src="imagen3.png" alt="Descripción de la imagen 3">
+    </div>
+
 </body>
 </html>
