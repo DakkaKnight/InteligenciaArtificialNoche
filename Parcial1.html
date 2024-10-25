@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial 1</title>
+</head>
+<body>
+    <div>
+        <pre>
+            <code>
+
+import math  # Importamos la librería 'math' para usar 'math.inf', que representa infinito
+
+# Definir los jugadores como constantes
+HUMANO = -1  # El humano se representará con -1
+COMPUTADORA = 1  # La computadora se representará con 1
+
+# Crear el tablero vacío como una lista de listas (matriz 3x3)
+tablero = [
+    [0, 0, 0],  # Cada 0 representa una celda vacía
+    [0, 0, 0],
+    [0, 0, 0]
+]
+
+# Función para verificar si hay un ganador
+def ganador(tablero, jugador):
+    # Posibles combinaciones de victorias: filas, columnas y diagonales
+    win_state = [
+        [tablero[0][0], tablero[0][1], tablero[0][2]],  # Fila 1
+        [tablero[1][0], tablero[1][1], tablero[1][2]],  # Fila 2
+        [tablero[2][0], tablero[2][1], tablero[2][2]],  # Fila 3
+        [tablero[0][0], tablero[1][0], tablero[2][0]],  # Columna 1
+        [tablero[0][1], tablero[1][1], tablero[2][1]],  # Columna 2
+        [tablero[0][2], tablero[1][2], tablero[2][2]],  # Columna 3
+        [tablero[0][0], tablero[1][1], tablero[2][2]],  # Diagonal principal
+        [tablero[2][0], tablero[1][1], tablero[0][2]],  # Diagonal secundaria
+    ]
+    # Si alguna de las combinaciones es igual al jugador, hay un ganador
+    return [jugador, jugador, jugador] in win_state
+
+# Función para verificar si el tablero está lleno (empate)
+def tablero_lleno(tablero):
+    for fila in tablero:
+        if 0 in fila:  # Si hay al menos una celda vacía (0), el tablero no está lleno
+            return False
+    return True  # Si no hay celdas vacías, el tablero está lleno
+
+# Evaluar el estado del tablero
+def evaluar(tablero):
+    # Si gana la computadora, retorna 1
+    if ganador(tablero, COMPUTADORA):
+        return 1
+    # Si gana el humano, retorna -1
+    elif ganador(tablero, HUMANO):
+        return -1
+    # Si no hay ganador (empate o juego aún en progreso), retorna 0
+    else:
+        return 0
+
+# Algoritmo Minimax: busca el mejor movimiento posible
+def minimax(tablero, profundidad, jugador):
+    # Caso base: si hay un ganador o empate
+    if ganador(tablero, COMPUTADORA):
+        return 1  # Gana la computadora
+    if ganador(tablero, HUMANO):
+        return -1  # Gana el humano
+    if tablero_lleno(tablero):
+        return 0  # Empate
+
+    # Si es el turno de la computadora, buscamos maximizar el puntaje
+    if jugador == COMPUTADORA:
+        mejor = -math.inf  # Inicializamos a -infinito para encontrar el valor máximo
+        # Recorremos todas las celdas del tablero
+        for i in range(3):
+            for j in range(3):
+                if tablero[i][j] == 0:  # Si la celda está vacía
+                    tablero[i][j] = COMPUTADORA  # La computadora hace un movimiento
+                    mejor = max(mejor, minimax(tablero, profundidad + 1, HUMANO))  # Llamada recursiva
+                    tablero[i][j] = 0  # Deshacemos el movimiento
+        return mejor  # Retornamos el mejor puntaje encontrado
+
+    # Si es el turno del humano, buscamos minimizar el puntaje
+    else:
+        peor = math.inf  # Inicializamos a infinito para encontrar el valor mínimo
+        for i in range(3):
+            for j in range(3):
+                if tablero[i][j] == 0:  # Si la celda está vacía
+                    tablero[i][j] = HUMANO  # El humano hace un movimiento
+                    peor = min(peor, minimax(tablero, profundidad + 1, COMPUTADORA))  # Llamada recursiva
+                    tablero[i][j] = 0  # Deshacemos el movimiento
+        return peor  # Retornamos el peor puntaje encontrado
+
+# Función para que la computadora realice su movimiento
+def movimiento_computadora(tablero):
+    mejor_movimiento = None  # Variable para almacenar la mejor jugada
+    mejor_valor = -math.inf  # Inicializamos a -infinito para encontrar el valor máximo
+    # Recorremos todas las celdas del tablero
+    for i in range(3):
+        for j in range(3):
+            if tablero[i][j] == 0:  # Si la celda está vacía
+                tablero[i][j] = COMPUTADORA  # La computadora hace un movimiento
+                valor = minimax(tablero, 0, HUMANO)  # Evaluamos el resultado con minimax
+                tablero[i][j] = 0  # Deshacemos el movimiento
+                if valor > mejor_valor:  # Si encontramos un mejor movimiento
+                    mejor_valor = valor
+                    mejor_movimiento = (i, j)  # Guardamos la posición del mejor movimiento
+    return mejor_movimiento  # Retornamos la mejor jugada
+
+# Función para imprimir el tablero en consola
+def imprimir_tablero(tablero):
+    for fila in tablero:
+        print(fila)  # Imprimimos cada fila del tablero
+
+# Función principal del juego
+def juego():
+    while True:
+        imprimir_tablero(tablero)  # Mostramos el tablero actual
+        if tablero_lleno(tablero):  # Si el tablero está lleno, es un empate
+            print("Empate!")
+            break
+
+        # Movimiento del humano
+        fila = int(input("Introduce la fila (0, 1, 2): "))  # Pedimos la fila
+        col = int(input("Introduce la columna (0, 1, 2): "))  # Pedimos la columna
+        if tablero[fila][col] == 0:  # Si la celda está vacía
+            tablero[fila][col] = HUMANO  # El humano hace su movimiento
+        else:
+            print("Movimiento no válido, intenta de nuevo.")  # Si la celda está ocupada
+            continue
+
+        if ganador(tablero, HUMANO):  # Verificamos si el humano ha ganado
+            imprimir_tablero(tablero)
+            print("¡Has ganado!")
+            break
+
+        # Movimiento de la computadora
+        movimiento = movimiento_computadora(tablero)  # La computadora elige su movimiento
+        tablero[movimiento[0]][movimiento[1]] = COMPUTADORA  # Realiza el movimiento
+
+        if ganador(tablero, COMPUTADORA):  # Verificamos si la computadora ha ganado
+            imprimir_tablero(tablero)
+            print("La computadora ha ganado.")
+            break
+
+# Iniciar el juego
+juego()  # Ejecutamos el ciclo principal del juego
+
+            </code>
+        </pre>
+    </div>
+
+        
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+    <h1>Encuestas:</h1>
+
+    <img src="" alt="">
+
+
+    <h1>Resultados del Test de Carrera</h1>
+    <h2>Carrera Recomendada: Ingeniero de Soporte</h2>
+    <p>Tus características psicológicas muestran una gran habilidad en comunicación, atención al detalle y resolución de problemas.</p>
+    <h3>Rasgos principales:</h3>
+    <ul>
+        <li>Conservador</li>
+        <li>Sensible</li>
+        <li>Analítico</li>
+        <li>Leal</li>
+    </ul>
+    <h3>Carreras Recomendadas:</h3>
+    <p>Roles técnicos y matemáticos, con énfasis en el trabajo en equipo.</p>
+
+    <h3>Ver Resultados Completos:</h3>
+    <p>Puedes ver los resultados completos <a href="https://campus.epam.com/en/career-test/result/W1s1LC0yLDUsMywyXSxbLTUsLTIsLTEsLTUsLTJdLFstMywtMSwtMywtNSwwXSxbMCw1LC00LDIsLTJdLFstNCwtMywtNCw1LDJdXQ==">aquí</a>.</p>
+</body>
+</html>

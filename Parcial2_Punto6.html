@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto 6</title>
+</head>
+<body>
+    <h1>Codigo punto 6</h1>
+    <p>A continuación escribo el código de Harry Potter adaptado para solucionar la proposición escrita en la diapositiva 359 con comentarios de funcionamiento:</p>
+
+    <pre>
+        <code>
+from logic import *
+
+# Definimos los símbolos
+rain = Symbol("rain")               # Lluvia
+bbc_visited = Symbol("bbc_visited") # Estudiantes visitaron BBC
+unimayor_visited = Symbol("unimayor_visited") # Estudiantes visitaron Unimayor
+
+# Definimos la base de conocimiento
+knowledge = And(
+    Implication(Not(rain), bbc_visited),  # Si no llueve, los estudiantes visitan a BBC hoy
+    Or(bbc_visited, unimayor_visited),     # Estudiantes visitaron BBC o Unimayor, pero no ambos
+    Not(And(bbc_visited, unimayor_visited)), # No visitaron ambos lugares
+    unimayor_visited                       # Estudiantes visitaron Unimayor hoy
+)
+
+# Imprimimos el resultado de la comprobación para la lluvia
+print("¿Está lloviendo?",model_check(knowledge, rain))  # Verifica si la proposición lluvia es verdadera
+        </code>
+    </pre>
+</body>
+</html>
